@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <a class="logo" href="{{ url_for('index') }}">🎓 <span>Student</span> Management</a>
+    <div class="nav-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('students') }}">Students</a>
+        <a href="{{ url_for('add_student') }}">Add Student</a>
+        <a href="{{ url_for('search') }}">Search</a>
+    </div>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+{% endwith %}
+
+<main class="container">
+    <section class="hero">
+        <div>
+            <span class="eyebrow">Student Portal</span>
+            <h1>Manage student records with ease.</h1>
+            <p class="subtitle">
+                Add, update, search and organize student information from one clean,
+                simple dashboard.
+            </p>
+            <div class="actions">
+                <a class="btn btn-primary" href="{{ url_for('add_student') }}">＋ Add Student</a>
+                <a class="btn btn-secondary" href="{{ url_for('students') }}">View Students →</a>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <div class="icon">📚</div>
+            <h2>Everything in one place</h2>
+            <p class="subtitle">
+                Keep roll numbers, courses, marks, contact details, departments
+                and attendance organized.
+            </p>
+            <a class="btn btn-secondary" href="{{ url_for('search') }}">🔎 Find a Student</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>
